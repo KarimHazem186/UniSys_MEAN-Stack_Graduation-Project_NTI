@@ -18,8 +18,10 @@ const deanshipSchema = new mongoose.Schema(
      },
     endDate: { type: Date },
   },
-  { timestamps: true }
-);
+  
+},{
+    timestamps: true,
+});
 
 module.exports = mongoose.model("Deanship", deanshipSchema);
 
