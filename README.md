@@ -1,7 +1,7 @@
 #  🎓 UniSys_MEAN-Stack_Graduation-Project_NTI ( University Management System)
 UniSys is a full-featured university management system built with the MEAN stack, offering tools for user roles, course management, e-services, academic tracking, payment, support, and graduation projects — all in one multilingual, responsive platform.
 
- 📊 **Dashboard**  
+ - 📊 **Dashboard**  
   Personalized views for admins, faculty, and students displaying courses, GPA, stats, and tasks.
 
 - 🏛️ **About University**  
