@@ -20,6 +20,10 @@ require('dotenv').config()
 const app = express()
 
 const userRoutes = require('./routes/user.routes.js')
+const collegeRoutes = require('./routes/college.routes')
+const departmentRoutes = require('./routes/department.routes')
+const courseRoutes = require('./routes/course.routes')
+const programRoutes = require('./routes/program.routes')
 
 
 
@@ -96,6 +100,10 @@ app.use('/uploads', express.static(path.join(__dirname,'public' ,'uploads')));
 
 
 app.use('/api/auth',userRoutes)
+app.use('/api/college',collegeRoutes)
+app.use('/api/department',departmentRoutes)
+app.use('/api/course',courseRoutes)
+app.use('/api/program',programRoutes)
 
 
 // Global Error Handler

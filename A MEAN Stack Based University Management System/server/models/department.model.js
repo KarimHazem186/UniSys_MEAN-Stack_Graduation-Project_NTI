@@ -70,3 +70,15 @@ const departmentSchema = new Schema(
 const Department = mongoose.model("Department", departmentSchema);
 
 module.exports = Department;
+
+/*
+{
+  "name": "Computer Science",
+  "description": "Handles computing programs",
+  "code": "CS",
+  "college": "64f7b19f5d8722341fcbbf93",
+  "headOfDepartment": "64f7bca15d8722341fcbbf94",
+  "courses": ["64f7bca15d8722341fcbbf95", "64f7bca15d8722341fcbbf96"]
+}
+
+*/

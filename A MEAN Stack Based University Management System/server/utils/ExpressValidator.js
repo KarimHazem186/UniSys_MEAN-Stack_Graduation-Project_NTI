@@ -238,27 +238,27 @@ class ExpressValidator {
         .isLength({ min: 2, max: 10 })
         .withMessage("College code must be 2-10 characters")
         .matches(/^[A-Z0-9]+$/)
-        .withMessage("College code must contain only uppercase letters and numbers");
+        .withMessage(
+          "College code must contain only uppercase letters and numbers"
+        );
     };
 
     chain.website = function () {
-      return this.optional()
-        .trim()
-        .isURL()
-        .withMessage("Invalid website URL");
+      return this.optional().trim().isURL().withMessage("Invalid website URL");
     };
 
-     chain.establishedYear = function () {
+    chain.establishedYear = function () {
       return this.notEmpty()
         .withMessage("Established year is required")
         .isInt({ min: 1800, max: new Date().getFullYear() })
-        .withMessage(`Year must be between 1800 and ${new Date().getFullYear()}`);
+        .withMessage(
+          `Year must be between 1800 and ${new Date().getFullYear()}`
+        );
     };
 
     chain.validObjectId = function () {
       return this.isMongoId().withMessage(`Invalid ${field} ID`);
     };
-
 
     chain.courseCode = function () {
       return this.notEmpty()
@@ -266,8 +266,10 @@ class ExpressValidator {
         .isLength({ min: 3, max: 10 })
         .withMessage("Course code must be 3-10 characters")
         .matches(/^[A-Z0-9]+$/)
-        .withMessage("Course code can only contain uppercase letters and numbers")
-        .customSanitizer(code => code.toUpperCase());
+        .withMessage(
+          "Course code can only contain uppercase letters and numbers"
+        )
+        .customSanitizer((code) => code.toUpperCase());
     };
     chain.departmentCode = function () {
       return this.notEmpty()
@@ -275,8 +277,10 @@ class ExpressValidator {
         .isLength({ min: 3, max: 10 })
         .withMessage("Department code must be 3-10 characters")
         .matches(/^[A-Z0-9]+$/)
-        .withMessage("Department code can only contain uppercase letters and numbers")
-        .customSanitizer(code => code.toUpperCase());
+        .withMessage(
+          "Department code can only contain uppercase letters and numbers"
+        )
+        .customSanitizer((code) => code.toUpperCase());
     };
 
     chain.courseTitle = function () {
@@ -312,7 +316,7 @@ class ExpressValidator {
       return this.optional()
         .isArray()
         .withMessage("Prerequisites must be an array")
-        .custom(value => value.every(id => /^[a-f\d]{24}$/i.test(id)))
+        .custom((value) => value.every((id) => /^[a-f\d]{24}$/i.test(id)))
         .withMessage("Each prerequisite must be a valid course ID");
     };
 
@@ -320,6 +324,42 @@ class ExpressValidator {
       return this.optional()
         .isBoolean()
         .withMessage("isActive must be a boolean");
+    };
+
+    chain.isProgramName = function () {
+      return this.notEmpty()
+        .trim()
+        .isLength({ min: 2, max: 100 })
+        .withMessage("Program name must be between 2 and 100 characters");
+    };
+
+    chain.isProgramCode = function () {
+      return this.notEmpty()
+        .trim()
+        .matches(/^[A-Z0-9]+$/i)
+        .withMessage("Program code must be alphanumeric")
+        .isLength({ min: 2, max: 10 })
+        .withMessage("Program code must be between 2 and 10 characters");
+    };
+
+    chain.isProgramType = function () {
+      return this.notEmpty()
+        .trim()
+        .isIn(["bachelor", "master", "phd"])
+        .withMessage("Program type must be bachelor, master, or phd");
+    };
+
+    chain.isDurationYears = function () {
+      return this.notEmpty()
+        .withMessage("Duration years is required")
+        .isInt({ min: 1, max: 10 })
+        .withMessage("Duration years must be between 1 and 10");
+    };
+
+    chain.isOptionalMongoID = function () {
+      return this.optional()
+        .isMongoId()
+        .withMessage("Invalid optional ID format");
     };
 
     chain.isID = function () {

@@ -12,14 +12,25 @@ const { authenticate } = require("../middlewares/authMiddleware");
 const userRoles = require("../utils/role");
 const { collegeValidator } = require("../validators/college.validator");
 
+router
+  .route("/")
+  .post(
+    authenticate,
+    authorizeRole([userRoles.ADMIN]),
+    collegeValidator,
+    createCollege
+  )
+  .get(getAllColleges);
 
-router.route("/")
-    .post(authenticate ,authorizeRole([userRoles.ADMIN]),collegeValidator,createCollege)
-    .get(getAllColleges);
-
-router.route("/:id")
-    .get(getCollegeById)
-    .put(authenticate ,authorizeRole([userRoles.ADMIN]),collegeValidator,updateCollege)
-    .delete(authenticate ,authorizeRole("admin"),deleteCollege);    
+router
+  .route("/:id")
+  .get(getCollegeById)
+  .put(
+    authenticate,
+    authorizeRole([userRoles.ADMIN]),
+    // collegeValidator,
+    updateCollege
+  )
+  .delete(authenticate, authorizeRole("admin"), deleteCollege);
 
 module.exports = router;

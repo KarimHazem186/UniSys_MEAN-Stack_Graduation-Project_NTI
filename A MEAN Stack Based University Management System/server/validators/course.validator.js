@@ -1,7 +1,7 @@
 const validateRequest = require("../middlewares/validateRequest");
 const validator = require("../utils/ExpressValidator");
 
-exports.couseValidator = [
+exports.courseValidator = [
   validator.body("code").courseCode(),
   validator.body("title").courseTitle(),
   validator.body("description").courseDescription(),
