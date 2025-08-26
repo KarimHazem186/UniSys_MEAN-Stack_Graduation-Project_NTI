@@ -9,6 +9,11 @@ const collegeSchema = new mongoose.Schema(
       minlength: [3, "College name must be at least 3 characters"],
       maxlength: [100, "College name must not exceed 100 characters"],
     },
+    university: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "University",
+    default:"University"
+  },
     description:{
       type: String,
       required: [true, "Description is required"],

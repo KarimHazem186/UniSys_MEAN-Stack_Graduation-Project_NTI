@@ -30,6 +30,7 @@ const departmentSchema = new Schema(
       type: String,
       trim: true,
       maxlength: [500, "Description must not exceed 500 characters"],
+      minlength:[3,"Description must be at least 3 characters"]
 
     },
     college: {

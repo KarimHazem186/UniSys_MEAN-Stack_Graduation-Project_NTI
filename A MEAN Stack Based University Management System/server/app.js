@@ -25,6 +25,7 @@ const departmentRoutes = require('./routes/department.routes')
 const courseRoutes = require('./routes/course.routes')
 const programRoutes = require('./routes/program.routes')
 const deanshipRoutes = require('./routes/deanship.routes')
+const adminUnitRoutes = require('./routes/adminUnit.routes');
 
 
 
@@ -105,6 +106,7 @@ app.use('/api/department',departmentRoutes)
 app.use('/api/course',courseRoutes)
 app.use('/api/program',programRoutes)
 app.use('/api/deanship',deanshipRoutes)
+app.use('/api/adminUnits', adminUnitRoutes);
 
 
 // Global Error Handler
