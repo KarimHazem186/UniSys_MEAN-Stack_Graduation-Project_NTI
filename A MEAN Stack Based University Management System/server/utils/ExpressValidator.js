@@ -113,7 +113,8 @@ class ExpressValidator {
       return this.optional() // Description might be optional; remove if required
         .trim()
         .isLength({ max: 500 }) // max length 500 chars (adjust as needed)
-        .withMessage("Description must be at most 500 characters")
+        // .withMessage("Description must be at most 500 characters")
+        .withMessage(`${field} must not exceed 500 characters`)
         .customSanitizer((value) => {
           if (typeof value !== "string") return value;
           // Remove script tags or potentially dangerous HTML tags (basic sanitization)
@@ -256,8 +257,16 @@ class ExpressValidator {
         );
     };
 
-    chain.validObjectId = function () {
-      return this.isMongoId().withMessage(`Invalid ${field} ID`);
+    // chain.validObjectId = function () {
+    //   return this.isMongoId().withMessage(`Invalid ${field} ID`);
+    // };
+
+     chain.validObjectId = function () {
+      return this
+        .notEmpty()
+        .withMessage(`${field} is required`)
+        .isMongoId()
+        .withMessage(`${field} must be a valid MongoDB ObjectId`);
     };
 
     chain.courseCode = function () {

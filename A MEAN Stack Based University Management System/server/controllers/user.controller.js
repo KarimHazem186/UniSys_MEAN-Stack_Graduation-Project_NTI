@@ -13,6 +13,7 @@ const { sendResponse } = require("../utils/response");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const buildQuery = require("../utils/queryBuilder");
 
 const refreshToken = asyncWrapper(async (req, res) => {
   const token = req.cookies.refreshToken;
@@ -340,6 +341,23 @@ const logout = asyncWrapper(async (req, res) => {
     sameSite: "Strict",
   });
   res.status(200).json({ message: "sign out successfully" });
+});
+
+
+const getAllUsers = asyncWrapper(async (req, res) => {
+  const { query, pagination, filter } = buildQuery(User, req.query);
+  const totalDocuments = await User.countDocuments(filter);
+  const totalPages = Math.ceil(totalDocuments / pagination.limit);
+
+  const users = await query;
+                            
+  res.status(200).json({
+    status: "success",
+    results: users.length,
+    page: pagination.page,
+    totalPages,
+    data: users,
+  });
 });
 
 module.exports = {

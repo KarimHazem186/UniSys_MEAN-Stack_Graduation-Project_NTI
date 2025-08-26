@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
         message: "lastName can only contain letters and spaces",
       },
     },
+    
     email: {
       type: String,
       required: [true, "Email is required"],

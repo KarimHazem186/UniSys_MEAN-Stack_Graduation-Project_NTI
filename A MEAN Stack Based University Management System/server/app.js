@@ -24,7 +24,7 @@ const collegeRoutes = require('./routes/college.routes')
 const departmentRoutes = require('./routes/department.routes')
 const courseRoutes = require('./routes/course.routes')
 const programRoutes = require('./routes/program.routes')
-
+const deanshipRoutes = require('./routes/deanship.routes')
 
 
 
@@ -104,6 +104,7 @@ app.use('/api/college',collegeRoutes)
 app.use('/api/department',departmentRoutes)
 app.use('/api/course',courseRoutes)
 app.use('/api/program',programRoutes)
+app.use('/api/deanship',deanshipRoutes)
 
 
 // Global Error Handler
